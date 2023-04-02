@@ -67,7 +67,7 @@ app.get("/", function(req, res) {
         })
       res.redirect("/");
     } else {
-      res.render("List", {listTitle: "Today", newListItems: data});
+      res.render("index", {listTitle: "Today", newListItems: data});
     }
    
    })
@@ -93,7 +93,7 @@ app.get("/:customListName", function(req, res){
       res.redirect("/" + customListName);
     } else {
       // Use existing list
-      res.render("List", {listTitle: foundList.name, newListItems: foundList.items});
+      res.render("index", {listTitle: foundList.name, newListItems: foundList.items});
     }
     
   }).catch(err =>{
