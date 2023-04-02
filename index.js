@@ -8,7 +8,7 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-mongoose.set("strictQuery", false);
+mongoose.set("strictQuery", true);
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI);
@@ -67,7 +67,7 @@ app.get("/", function(req, res) {
         })
       res.redirect("/");
     } else {
-      res.render("index", {listTitle: "Today", newListItems: data});
+      res.render("list", {listTitle: "Today", newListItems: data});
     }
    
    })
@@ -93,7 +93,7 @@ app.get("/:customListName", function(req, res){
       res.redirect("/" + customListName);
     } else {
       // Use existing list
-      res.render("index", {listTitle: foundList.name, newListItems: foundList.items});
+      res.render("list", {listTitle: foundList.name, newListItems: foundList.items});
     }
     
   }).catch(err =>{
